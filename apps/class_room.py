@@ -9,16 +9,28 @@ from datetime import datetime
 @Route("/virtualClassRoom/(.*)/student", name="Student Join")
 class StudentJoinHandle(BaseHandler):
     def get(self, uid=''):
-        join_url = room_dispatch(cid='6878082500', uid=uid)
-        self.render("admin/wxt_vc.html", join_url=join_url)
-
+        try:
+            with open("courses", 'r') as f:
+                lines = f.readlines()
+                line = lines[0][:-1]
+                arrange_student(uid, line)
+                join_url = room_dispatch(cid=line, uid=uid)
+                self.render("admin/wxt_vc.html", join_url=join_url)
+        except:
+            self.write("no class Info")
 
 @Route("/virtualClassRoom/teacher", name="Teacher Join")
 class TeacherJoinHandle(BaseHandler):
     def get(self):
         uid = self.get_argument("uid", '7632351460')
-        cid = self.get_argument("cid", '6878082500')
+        # cid = self.get_argument("cid", '6878082500')
         now = datetime.now()
-        course_update_start_time(cid=cid, start_time=now.strftime("%Y-%m-%d %H:%m"), length="45")
-        join_url = room_dispatch(uid=uid, cid=cid)
+        dt_str = now.strftime("%Y-%m-%d %H:%m")
+        rs = course_create(title='Trial Class at ' + dt_str, c_type='1', length='45', start_time=dt_str)
+        course = str(rs.get("course").get("uniqueCourseId"))
+        arrange_teacher(course, uid)
+        with open("courses", 'w') as f:
+            f.write(course + '\n')
+        # course_update_start_time(cid=course, start_time=now.strftime("%Y-%m-%d %H:%m"), length="45")
+        join_url = room_dispatch(uid=uid, cid=course)
         self.render("admin/wxt_vc.html", join_url=join_url)
