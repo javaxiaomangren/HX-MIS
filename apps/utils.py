@@ -6,7 +6,6 @@ import httplib
 import ujson
 import traceback
 import smtplib
-import torndb
 import tornado.web
 from torndb import Row
 from tornado.web import gen_log
