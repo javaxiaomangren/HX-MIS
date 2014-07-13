@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python
 #coding: utf-8
 import os.path
-import torndb
+# import torndb
 import tornado.auth
 import tornado.httpserver
 import tornado.ioloop
