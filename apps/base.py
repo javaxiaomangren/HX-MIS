@@ -12,7 +12,7 @@ else:
     from collections import OrderedDict
 
 import tornado.web
-from torndb import Row
+from utils import Row
 from tornado.log import gen_log as logger
 
 
