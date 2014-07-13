@@ -7,10 +7,17 @@ import ujson
 import traceback
 import smtplib
 import tornado.web
-from torndb import Row
+# from torndb import Row
 from tornado.web import gen_log
 from urllib2 import Request, urlopen
 
+class Row(dict):
+    """A dict that allows for object-like property access syntax."""
+    def __getattr__(self, name):
+        try:
+            return self[name]
+        except KeyError:
+            raise AttributeError(name)
 
 
 class Route(object):
