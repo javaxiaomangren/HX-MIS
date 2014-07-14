@@ -2,6 +2,7 @@ __author__ = 'windy'
 #coding: utf-8
 from base import *
 from wxt_api import *
+import datetime as dt
 from datetime import datetime
 
 #===============================后台管理=====================
@@ -25,10 +26,11 @@ class TeacherJoinHandle(BaseHandler):
     def get(self):
         uid = self.get_argument("uid", '3714276568')
         # cid = self.get_argument("cid", '6878082500')
-        now = datetime.now()
-        dt_str = now.strftime("%Y-%m-%d %H:%m")
+        dt_str = dt.datetime.now().strftime("%Y-%m-%d %H:%m")
+        logger.info(dt_str)
         rs = course_create(title='Trial Class at ' + dt_str, c_type='1', length='45', start_time=dt_str)
-        course = str(rs.get("course").get("uniqueCourseId"))
+        cs = course = str(rs.get("course").get("uniqueCourseId"))
+        logger.info(cs)
         arrange_teacher(course, uid)
         with open("courses", 'w') as f:
             f.write(course + '\n')
