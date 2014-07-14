@@ -11,12 +11,20 @@ import ujson
 # uniqueUserId	7602270640
 # partner	20140327173227
 # appKey	25968f684db04d409ca3ab8d91da9609
+#####################
+# yanghua.wangxiaotong.com
+# yh1314529@qq.com
+# 106yh!@#$
+#
+# uniqueUserId	3415726527
+# partner	20140714105422
+# appKey	2d7f4bd5fade487886f62721fbfbd23d
 # """
 
 
 wxt_url = "http://api.wangxiaotong.com"
-partner = "20140327173227"
-appkey = "25968f684db04d409ca3ab8d91da9609"
+partner = "20140714105422"
+appkey = "2d7f4bd5fade487886f62721fbfbd23d"
 _headers = {"Content-type": "application/x-www-form-urlencoded"}
 post = "POST"
 host = "api.wangxiaotong.com"
@@ -135,7 +143,6 @@ def course_create(title='', c_type='1', length='30', start_time=''):
     rs = http_post(host, '/api/course/create', post, params + '&sign=' + sign, _headers)
     return get_http_result(rs)
     # {u'course': {u'endTime': u'2014-07-13 11:30:00', u'uniqueCourseId': 1201363556, u'courseType': 1, u'startTime': u'2014-07-13 11:00:00', u'title': u'\u6691\u671f\u82f1\u8bed'}, u'success': True}
-
 
 def course_update_title(cid='', title=''):
     """
