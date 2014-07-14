@@ -28,9 +28,10 @@ class TeacherJoinHandle(BaseHandler):
         # cid = self.get_argument("cid", '6878082500')
         dt_str = dt.datetime.now().strftime("%Y-%m-%d %H:%m")
         logger.info(dt_str)
-        rs = course_create(title='Trial Class at ' + dt_str, c_type='1', length='45', start_time=dt_str)
-        cs = course = str(rs.get("course").get("uniqueCourseId"))
-        logger.info(cs)
+        # rs = course_create(title='Trial Class at ' + dt_str, c_type='1', length='45', start_time=dt_str)
+        # cs = course = str(rs.get("course").get("uniqueCourseId"))
+        # logger.info(cs)
+        course = '4174250266'
         arrange_teacher(course, uid)
         with open("courses", 'w') as f:
             f.write(course + '\n')
