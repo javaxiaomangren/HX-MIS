@@ -6,6 +6,7 @@ from datetime import datetime
 
 #===============================后台管理=====================
 
+
 @Route("/virtualClassRoom/(.*)/student", name="Student Join")
 class StudentJoinHandle(BaseHandler):
     def get(self, uid=''):
@@ -22,7 +23,7 @@ class StudentJoinHandle(BaseHandler):
 @Route("/virtualClassRoom/teacher", name="Teacher Join")
 class TeacherJoinHandle(BaseHandler):
     def get(self):
-        uid = self.get_argument("uid", '7632351460')
+        uid = self.get_argument("uid", '3714276568')
         # cid = self.get_argument("cid", '6878082500')
         now = datetime.now()
         dt_str = now.strftime("%Y-%m-%d %H:%m")
